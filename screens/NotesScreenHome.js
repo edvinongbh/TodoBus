@@ -54,14 +54,18 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   buttonText: {
+    textAlign: "center",
     fontWeight: "bold",
     color: "white",
   },
   todoButton: {
     backgroundColor: "orange",
+    borderRadius: 15,
+    width: "30%",
   },
   busButton: {
     backgroundColor: "red",
+    borderRadius: 15,
     width: "30%",
   },
 });
