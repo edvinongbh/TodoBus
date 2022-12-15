@@ -1,71 +1,88 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
-import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
+import React from "react";
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
 
 export default function NotesScreenHome() {
   const navigation = useNavigation();
-  const [text] = useState("");
+  const posts = [
+    { title: "Add new notes", content: "New notes are everything", id: "1" },
+  ];
 
-  // refer to PCMOB3 slide 179 for button
-
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text style={styles.label}>Welcome</Text>
-
-      <View style={styles.buttons}>
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={[styles.button, styles.todoButton]}
-        >
-          <Text style={styles.buttonText}>Todo</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={[styles.button, styles.busButton]}
-        >
-          <Text style={styles.buttonText}>Bus</Text>
+  function renderItem({ item }) {
+    return (
+      <View style={styles.noteCard}>
+        <Text style={styles.noteCardTitle}>{item.title}</Text>
+        <TouchableOpacity onPress={() => {}}>
+          <FontAwesome name={"remove"} size={24} color={"black"} />
         </TouchableOpacity>
       </View>
+    );
+  }
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>notes</Text>
 
-      <Text style={{ marginTop: 40, color: "grey" }}>
-        This is what you typed:
-      </Text>
-      <Text style={{ color: "#333", marginTop: 10 }}>{text}</Text>
+      <FlatList
+        data={posts}
+        renderItem={renderItem}
+        keyExtractor={(post) => post.id.toString()}
+      />
+
+      <View style={{ flex: 1 }} />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate("Add")}
+      >
+        <Text style={styles.buttonText}>Add</Text>
+      </TouchableOpacity>
     </View>
   );
 }
+
 const styles = StyleSheet.create({
-  label: {
-    fontWeight: "bold",
-    fontSize: 30,
-  },
-  textInput: {
-    margin: 20,
+  noteCard: {
+    borderColor: "gray",
     borderWidth: 1,
-    width: "80%",
-    padding: 10,
-    borderColor: "#ccc",
-  },
-  buttons: {
+    padding: 15,
+    borderRadius: 5,
+    marginBottom: 15,
     flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  noteCardTitle: {
+    fontSize: 13,
+    fontWeight: "500",
+  },
+
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    paddingTop: 100,
+    padding: 25,
+  },
+  title: {
+    fontWeight: "bold",
+    fontSize: 40,
+    marginBottom: 20,
   },
   button: {
-    padding: 15,
-    margin: 10,
+    backgroundColor: "black",
+    borderRadius: 15,
+    width: "100%",
   },
   buttonText: {
     textAlign: "center",
-    fontWeight: "bold",
+    fontWeight: "400",
+    fontSize: 17,
+    padding: 20,
     color: "white",
-  },
-  todoButton: {
-    backgroundColor: "orange",
-    borderRadius: 15,
-    width: "30%",
-  },
-  busButton: {
-    backgroundColor: "red",
-    borderRadius: 15,
-    width: "30%",
   },
 });
