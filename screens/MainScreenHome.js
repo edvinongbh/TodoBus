@@ -22,14 +22,14 @@ export default function MainScreenHome() {
 
         <View style={styles.buttons}>
           <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            style={[styles.button, styles.todoButton]}
+            onPress={() => navigation.navigate("Home")}
+            style={[styles.todoButton]}
           >
             <Text style={styles.buttonText}>Todo</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            style={[styles.button, styles.busButton]}
+            onPress={() => navigation.navigate("Homebus")}
+            style={[styles.busButton]}
           >
             <Text style={styles.buttonText}>Bus</Text>
           </TouchableOpacity>
@@ -70,21 +70,22 @@ const styles = StyleSheet.create({
   buttons: {
     flexDirection: "row",
   },
-  button: {
-    padding: 15,
-    margin: 10,
-  },
+
   buttonText: {
     textAlign: "center",
     fontWeight: "bold",
     color: "white",
   },
   todoButton: {
+    padding: 15,
+    margin: 10,
     backgroundColor: "orange",
     borderRadius: 15,
     width: "30%",
   },
   busButton: {
+    padding: 15,
+    margin: 10,
     backgroundColor: "red",
     borderRadius: 15,
     width: "30%",

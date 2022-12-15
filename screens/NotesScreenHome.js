@@ -1,4 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
+import { FontAwesome } from "@expo/vector-icons";
 import React from "react";
 import {
   FlatList,
@@ -7,10 +8,10 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
 
 export default function NotesScreenHome() {
   const navigation = useNavigation();
+
   const posts = [
     { title: "Add new notes", content: "New notes are everything", id: "1" },
   ];
@@ -20,13 +21,13 @@ export default function NotesScreenHome() {
       <View style={styles.noteCard}>
         <Text style={styles.noteCardTitle}>{item.title}</Text>
         <TouchableOpacity onPress={() => {}}>
-          <FontAwesome name={"remove"} size={24} color={"black"} />
+          <FontAwesome name={"remove"} size={24} color={"green"} />
         </TouchableOpacity>
       </View>
     );
   }
   return (
-    <View style={styles.container}>
+    <View style={styles.containerNote}>
       <Text style={styles.title}>notes</Text>
 
       <FlatList
@@ -57,12 +58,13 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
+
   noteCardTitle: {
     fontSize: 13,
     fontWeight: "500",
   },
 
-  container: {
+  containerNote: {
     flex: 1,
     backgroundColor: "#fff",
     paddingTop: 100,
