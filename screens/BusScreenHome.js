@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export default function BusScreenHome() {
   const navigation = useNavigation();
@@ -15,7 +21,9 @@ export default function BusScreenHome() {
       </TouchableOpacity>
 
       <Text style={styles.title}>Bus arrival time:</Text>
-      <Text style={styles.arrivalTime}>{loading ? "loading" : "loaded"}</Text>
+      <Text style={styles.arrivalTime}>
+        {loading ? <ActivityIndicator color={"blue"} /> : "Loaded"}
+      </Text>
 
       <TouchableOpacity style={styles.button} onPress={() => setLoading(false)}>
         <Text style={styles.buttonText}>Refresh</Text>
