@@ -20,14 +20,15 @@ export default function NotesScreenHome() {
     return (
       <View style={styles.noteCard}>
         <Text style={styles.noteCardTitle}>{item.title}</Text>
-        <TouchableOpacity onPress={() => {}}>
-          <FontAwesome name={"remove"} size={24} color={"green"} />
-        </TouchableOpacity>
+        <TouchableOpacity onPress={() => {}}></TouchableOpacity>
       </View>
     );
   }
   return (
     <View style={styles.containerNote}>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <FontAwesome name={"arrow-left"} size={25} color={"black"} />
+      </TouchableOpacity>
       <Text style={styles.title}>notes</Text>
 
       <FlatList
@@ -70,6 +71,7 @@ const styles = StyleSheet.create({
     paddingTop: 100,
     padding: 25,
   },
+
   title: {
     fontWeight: "bold",
     fontSize: 40,
